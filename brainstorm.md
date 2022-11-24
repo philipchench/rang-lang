@@ -2,19 +2,35 @@ First goal: compile into Python, uses subset of Python syntax - can further deve
 Language at its core is Chinese, although no control over variable names
 
 Supports:
-if, elif, else
-and, or, not, in, is
-True, False, None
+if 如果, elif 或是, else 否則
+and 和, or 或, not 非, in 在, is 是
+True 真, False , None
 del
 for, while, break, continue, 
 def, return, pass
 built-in functions by priority: range(), len(), set() *see below*, min(), max(), sorted(), float(),  int(), str()
 
 Arithmetics:
++, -, \*, /, //, \*\*, %
+>, <, =, >=, <=, ==, !=
+
+Scope:
+indentations: \t
+
+Misc:
+, ，
+: ：
+\t same
+\n same or 換行
+
+Primitives:
+boolean, int, float/double, str, 
 
 Data structures:
 list: [], every method
+「」
 dictionary: {}, most methods
+『』
 set: set(), methods
 tuple?
 
@@ -24,5 +40,3 @@ lambda
 math methods
 
 
-False	Boolean value, result of comparison operations
-finally	Used with exceptions, a block of code that will be executed no matter if there is an exception or not
