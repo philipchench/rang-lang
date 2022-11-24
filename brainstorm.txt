@@ -4,17 +4,17 @@ Language at its core is Chinese, although no control over variable names
 Supports:
 if 如果, elif 或是, else 否則
 and 和, or 或, not 非, in 在, is 是
-True 真, False , None
-del
-for, while, break, continue, 
-def, return, pass
-built-in functions by priority: range(), len(), set() *see below*, min(), max(), sorted(), float(),  int(), str()
+True 真, False 虛, None 無
+del 刪
+for 每, while 當, break 停, continue 繼續, 
+def 函式, return 返回, pass 通過
+built-in functions by priority: range() 範圍（）, len() 長度（）, set() *see below*, min() 最小（）, max() 最大（）, sorted() 排序好（）, float() 浮點數（）,  int() 整數（）, str() 字串（）
 
 Arithmetics:
-+, -, \*, /, //, \*\*, %
->, <, =, >=, <=, ==, !=
-
++ 加, - 減, * 乘, / 除, // 整除, ** 次方, % 模除
+> 大於, < 小於, = ＝, >= 大於等於, <= 小於等於, == 等於, != 非等於
 Scope:
+() （）
 indentations: \t
 
 Misc:
