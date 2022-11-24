@@ -1,0 +1,45 @@
+Revise syntax
+
+Statement support: conditional, iteration
+Arithmetics, variables, primitives, functions
+Data structures:
+List: supports access by index, append, del
+Later: dictionary and set
+
+Supports:
+if 如果, elif 或者, else 否則
+and 和, or 或, not 非, in 在, is 是
+True 真, False 虛, None 無
+del 刪
+for 每, while 當, break 停, continue 繼續, 
+def 函式, return 返回, pass 通過
+Python built-in functions (will redesign syntax): range(), len(), print()
+
+Arithmetics:
++ 加, - 減, * 乘以, / 除以, // 整除, ** 次方, % 模除
+> 大於, < 小於, = ＝, >= 大於等於, <= 小於等於, == 等於, != 非等於
+Scope:
+() （）
+no indentation for scope, use {} ：。
+
+Misc:
+space
+, ，
+. ．
+: ：
+\t same, 4 spaces
+\n same or 換行??
+comment: ＃
+'', "" 頭尾 e.g. 頭this is a string尾
+
+Primitives:
+boolean, int, float/double, str
+
+Data structures:
+list: [], append() 附加（）, 
+「」
+dictionary: {}, most methods
+『』
+set: set(), methods
+tuple?
+
