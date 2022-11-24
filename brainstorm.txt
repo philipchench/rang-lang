@@ -8,26 +8,30 @@ True 真, False 虛, None 無
 del 刪
 for 每, while 當, break 停, continue 繼續, 
 def 函式, return 返回, pass 通過
-built-in functions by priority: range() 範圍（）, len() 長度（）, set() *see below*, min() 最小（）, max() 最大（）, sorted() 排序好（）, float() 浮點數（）,  int() 整數（）, str() 字串（）
+built-in functions by priority: range() 範圍（）, len() 長度（）, print() 列印（）, set() *see below*, min() 最小（）, max() 最大（）, sorted() 排序好（）, float() 浮點數（）,  int() 整數（）, str() 字串（）
 
 Arithmetics:
-+ 加, - 減, * 乘, / 除, // 整除, ** 次方, % 模除
++ 加, - 減, * 乘以, / 除以, // 整除, ** 次方, % 模除
 > 大於, < 小於, = ＝, >= 大於等於, <= 小於等於, == 等於, != 非等於
 Scope:
 () （）
-indentations: \t
+no indentation for scope, use {} ：。
 
 Misc:
+space
 , ，
+. ．
 : ：
-\t same
-\n same or 換行
+\t same, 4 spaces
+\n same or 換行??
+comment: ＃
+'', "" 頭尾 e.g. 頭this is a string尾
 
 Primitives:
-boolean, int, float/double, str, 
+boolean, int, float/double, str
 
 Data structures:
-list: [], every method
+list: [], append() 附加（）, 
 「」
 dictionary: {}, most methods
 『』
@@ -39,4 +43,52 @@ class support
 lambda
 math methods
 
+Sample:
+
+var1 = 3
+var2 = 2
+var3 = var1 * var2
+
+def test(input1, input2):
+  dict1 = {}
+  for i in range(input1):
+    dict1[i] = []
+    j = 0
+    while j < len(input2):
+      dict1[i].append(input2[j] * i)
+      j += 1
+  return dict1
+
+list1 = [1, 2, 3, 4, 5]
+list1.append(var3) # 6
+print("輸出： " + test(3, list1))
+
+變數１ ＝ ３
+變數二 ＝ ２
+變數３ ＝ 變數１ 乘以 變數二 ＃６
+
+函式 測試（輸入１， 輸入２）：
+  雜湊表１ ＝ 『』
+  每 哎 在 範圍（輸入１）：
+    雜湊表１「哎」 ＝ 「」
+    賊 ＝ ０
+    當 賊 小於 長度（輸入１）：
+      雜湊表１「哎」．附加（輸入２「賊」 乘以 哎）
+      賊 ＝ 賊 加 １
+    。
+  。
+  返回 雜湊表１
+。
+  
+陣列１ ＝ 「１， ２， ３， ４， ５」
+陣列１．附加（變數３） ＃ ６
+列印（頭輸出： 尾 加 測試（３， 陣列１））
+  
+
+Milestone1: Support variables, statements, arithmetics, list, set, dict, selected data structure methods, basic built-in methods, functions
+
+Graph for tokens:
+recursive structure that splits on every deeper indent, create a representation
+  
+  
 
