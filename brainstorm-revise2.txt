@@ -7,37 +7,79 @@ Later: dictionary and set
 
 Supports:
 if ㄧㄈ, elif ㄝㄌㄧㄈ, else ㄝㄌㄙ
-and ㄚㄙㄉ, or ㄛㄦ, not ㄋㄚㄊ, in ㄧㄣ, is ㄧㄙ
-True ㄔㄖㄨ, False ㄈㄛㄌㄙ, None ㄋㄜㄌ
-del ㄉㄝㄌ
-for ㄈㄛㄦ, while ㄨㄞㄌ, break ㄅㄖㄟㄎ, continue ㄎㄚㄣㄊ, 
-def ㄈㄤㄎ, return ㄖㄊㄦㄣ, pass ㄆㄚㄙ
-Python built-in functions: range() ㄖㄟㄣㄓ, len() ㄌㄝㄣ, print() ㄆㄖㄣㄊ
+and ㄚㄙㄉ, or ㄛㄦ, not ㄋㄊ, in ㄧㄣ, is ㄧㄙ
+True ㄔㄖㄨ, False ㄈㄌㄙ, None ㄋㄌ
+del ㄉㄌ
+for ㄈㄦ, while ㄨㄌ, break ㄅㄖㄎ, continue ㄎㄣㄊㄋ, 
+def ㄈㄣㄎ, return ㄖㄊㄦㄣ, pass ㄆㄙ
+Python built-in functions: range() ㄖㄣㄓ, len() ㄌㄣ, print() ㄆㄖㄣㄊ
 
 Arithmetics:
-+ ㄆㄌ, - ㄇㄞ, * ㄇㄌ, / ㄉㄧ, // ㄈㄉㄧ, ** ㄝㄎ, % ㄇㄛ
++ ㄆㄌ, - ㄇㄣ, * ㄇㄌ, / ㄉㄧ, // ㄈㄉ, ** ㄆㄠ, % ㄇㄉ
 > ㄍㄦ, < ㄌㄙ, = ㄝㄎ, >= ㄍㄦㄝㄎ, <= ㄌㄙㄝㄎ, == ㄝㄝㄎ, != ㄋㄝㄎ
 Scope:
 () （）
-no indentation for scope, use 『』 ：。
+no indentation for scope, use ：。
 
 Misc:
 space
 , 、
-. 點
+. ．
 : ：
-\t same, 4 spaces
-\n same or 換行??
 comment: ＃
-'', "" 頭尾 e.g. 頭this is a string尾
+'', “” e.g. “this is a string”
+numbers:
+ㄧ二三四五六七八九零點 
 
 Primitives:
 boolean, int, float/double, str
 
 Data structures:
-list: [], append() 附加（）, 
+list: [], append() ㄚㄆㄟㄣ（）, 
 「」
 dictionary: {}, most methods
 『』
-set: set(), methods
+set?
 tuple?
+
+Example:
+
+var1 ㄝㄎ 三
+var2 ㄝㄎ 二
+var3 ㄝㄎ var1 * var2
+
+def test(input1, input2):
+  dict1 = {}
+  for i in range(input1):
+    dict1[i] = []
+    j = 0
+    while j < len(input2):
+      dict1[i].append(input2[j] * i)
+      j += 1
+  return dict1
+
+list1 = [1, 2, 3, 4, 5]
+list1.append(var3) # 6
+print("輸出： " + test(3, list1))
+
+Python3:
+
+var1 = 3
+var2 = 2
+var3 = var1 * var2
+
+def test(input1, input2):
+  dict1 = {}
+  for i in range(input1):
+    dict1[i] = []
+    j = 0
+    while j < len(input2):
+      dict1[i].append(input2[j] * i)
+      j += 1
+  return dict1
+
+list1 = [1, 2, 3, 4, 5]
+list1.append(var3) # 6
+print("輸出： " + test(3, list1))
+
+
