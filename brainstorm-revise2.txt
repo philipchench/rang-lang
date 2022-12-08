@@ -1,0 +1,43 @@
+
+Statement support: conditional, iteration
+Arithmetics, variables, primitives, functions
+Data structures:
+List: supports access by index, append, del
+Later: dictionary and set
+
+Supports:
+if ㄧㄈ, elif ㄝㄌㄧㄈ, else ㄝㄌㄙ
+and ㄚㄙㄉ, or ㄛㄦ, not ㄋㄚㄊ, in ㄧㄣ, is ㄧㄙ
+True ㄔㄖㄨ, False ㄈㄛㄌㄙ, None ㄋㄜㄌ
+del ㄉㄝㄌ
+for ㄈㄛㄦ, while ㄨㄞㄌ, break ㄅㄖㄟㄎ, continue ㄎㄚㄣㄊ, 
+def ㄈㄤㄎ, return ㄖㄊㄦㄣ, pass ㄆㄚㄙ
+Python built-in functions: range() ㄖㄟㄣㄓ, len() ㄌㄝㄣ, print() ㄆㄖㄣㄊ
+
+Arithmetics:
++ ㄆㄌ, - ㄇㄞ, * ㄇㄌ, / ㄉㄧ, // ㄈㄉㄧ, ** ㄝㄎ, % ㄇㄛ
+> ㄍㄦ, < ㄌㄙ, = ㄝㄎ, >= ㄍㄦㄝㄎ, <= ㄌㄙㄝㄎ, == ㄝㄝㄎ, != ㄋㄝㄎ
+Scope:
+() （）
+no indentation for scope, use 『』 ：。
+
+Misc:
+space
+, 、
+. 點
+: ：
+\t same, 4 spaces
+\n same or 換行??
+comment: ＃
+'', "" 頭尾 e.g. 頭this is a string尾
+
+Primitives:
+boolean, int, float/double, str
+
+Data structures:
+list: [], append() 附加（）, 
+「」
+dictionary: {}, most methods
+『』
+set: set(), methods
+tuple?
