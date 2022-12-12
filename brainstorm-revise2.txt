@@ -6,17 +6,17 @@ List: supports access by index, append, del
 Later: dictionary and set
 
 Supports:
-if ㄧㄈ, elif ㄝㄌㄧㄈ, else ㄝㄌㄙ
-and ㄚㄙㄉ, or ㄛㄦ, not ㄋㄊ, in ㄧㄣ, is ㄧㄙ
+if ㄧㄈ, elif ㄝㄌㄈ, else ㄝㄌㄙ
+and ㄚㄣㄉ, or ㄛㄦ, not ㄋㄊ, is ㄧㄙ
 True ㄔㄖㄨ, False ㄈㄌㄙ, None ㄋㄌ
 del ㄉㄌ
-for ㄈㄦ, while ㄨㄌ, break ㄅㄖㄎ, continue ㄎㄣㄊㄋ, 
+for ㄈㄦ, while ㄨㄌ, break ㄅㄖㄎ, continue ㄎㄣㄊㄋ,
 def ㄈㄣㄎ, return ㄖㄊㄦㄣ, pass ㄆㄙ
-Python built-in functions: range() ㄖㄣㄓ, len() ㄌㄣ, print() ㄆㄖㄣㄊ
+Python built-in functions: for i in range(5) ㄈㄦ（ㄞ、零、五、ㄧ）, len() ㄌㄣ（）, print() ㄆㄖㄣㄊ（）
 
 Arithmetics:
-+ ㄆㄌ, - ㄇㄣ, * ㄇㄌ, / ㄉㄧ, // ㄈㄉ, ** ㄆㄠ, % ㄇㄉ
-> ㄍㄦ, < ㄌㄙ, = ㄝㄎ, >= ㄍㄦㄝㄎ, <= ㄌㄙㄝㄎ, == ㄝㄝㄎ, != ㄋㄝㄎ
++ ㄆㄙ, - ㄋㄍ, * ㄇㄌ, / ㄉㄧ, // ㄈㄉ, ** ㄆㄠ, % ㄇㄉ
+> ㄍㄦ, < ㄌㄙ, = ㄧㄎ, >= ㄍㄦㄧㄎ, <= ㄌㄙㄧㄎ, == ㄧㄧㄎ, != ㄋㄝㄎ
 Scope:
 () （）
 no indentation for scope, use ：。
@@ -35,32 +35,32 @@ Primitives:
 boolean, int, float/double, str
 
 Data structures:
-list: [], append() ㄚㄆㄟㄣ（）, 
-「」
-dictionary: {}, most methods
+list: [1,2,3] ㄌㄙㄊ（一、二、三）, append() ㄚㄆㄣ（）, index e.g. arr[0] ㄧㄉ（零）, remove use del, substring ㄙㄅ（）
+
+dictionary: {1:1, 2:2} ㄉㄎㄊ（一：ㄧ、二：二）, most methods
 『』
 set?
 tuple?
 
 Example:
 
-var1 ㄝㄎ 三
-var2 ㄝㄎ 二
-var3 ㄝㄎ var1 * var2
+var1 ㄧㄎ 三
+var2 ㄧㄎ 二
+var3 ㄧㄎ var1 ㄇㄌ var2
 
-def test(input1, input2):
-  dict1 = {}
-  for i in range(input1):
-    dict1[i] = []
-    j = 0
-    while j < len(input2):
-      dict1[i].append(input2[j] * i)
-      j += 1
-  return dict1
+ㄈㄣㄎ test（input1、 input2）：
+  dict1 ㄧㄎ ㄉㄎㄊ（）
+  ㄈㄦ （ㄞ、零、input1、ㄧ）：
+    dict1．ㄞㄉ（ㄞ） ㄧㄎ ㄌㄙㄊ（）
+    j ㄧㄎ 零
+    ㄨㄌ j ㄌㄙ ㄌㄣ（input2）：
+      dict1．ㄞㄉ（ㄞ）．ㄚㄆㄣ（input2．ㄞㄉ（j）ㄇㄌ ㄞ）
+      j ㄧㄎ j ㄆㄌ ㄧ
+  ㄖㄊㄦㄣ dict1
 
-list1 = [1, 2, 3, 4, 5]
-list1.append(var3) # 6
-print("輸出： " + test(3, list1))
+list1 ㄧㄎ ㄌㄙㄊ（一、二、三、四、五）
+list1．ㄚㄆㄣ（var3）
+ㄆㄖㄣㄊ（"輸出： "、list1）
 
 Python3:
 
@@ -70,7 +70,7 @@ var3 = var1 * var2
 
 def test(input1, input2):
   dict1 = {}
-  for i in range(input1):
+  for i in range(0, input1):
     dict1[i] = []
     j = 0
     while j < len(input2):
@@ -80,6 +80,6 @@ def test(input1, input2):
 
 list1 = [1, 2, 3, 4, 5]
 list1.append(var3) # 6
-print("輸出： " + test(3, list1))
+print("輸出： ", test(3, list1))
 
 
