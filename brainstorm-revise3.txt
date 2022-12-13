@@ -1,46 +1,38 @@
 
-Statement support: conditional, iteration
-Arithmetics, variables, primitives, functions
-Data structures:
-List: supports access by index, append, del
-Later: dictionary and set
-
 Supports:
-if ㄧㄈ, elif ㄝㄌㄈ, else ㄝㄌㄙ
-and ㄚㄣㄉ, or ㄛㄦ, not ㄋㄊ, is ㄧㄙ
-True ㄔㄖㄨ, False ㄈㄌㄙ, None ㄋㄌ
-del ㄉㄌ
-for ㄈㄦ, while ㄨㄌ, break ㄅㄖㄎ, continue ㄎㄣㄊㄋ,
-def ㄈㄣㄎ, return ㄖㄊㄦㄣ, pass ㄆㄙ
-Python built-in functions: for i in range(5) ㄈㄦ（ㄞ、零、五、ㄧ）, len() ㄌㄣ（）, print() ㄆㄖㄣㄊ（）
+if, else if, else
+and, or, not
+true, false, null
+for, while, break, continue,
+function, return
+built-in functions:len(), print()
 
 Arithmetics:
-+ ㄆㄙ, - ㄋㄍ, * ㄇㄌ, / ㄉㄧ, // ㄈㄉ, ** ㄆㄠ, % ㄇㄉ
-> ㄍㄦ, < ㄌㄙ, = ㄧㄎ, >= ㄍㄦㄧㄎ, <= ㄌㄙㄧㄎ, == ㄧㄧㄎ, != ㄋㄝㄎ
++, -, *, /, //, **, %
+>, <, =, >=, <=, ==, !=, +=, -=, *=, /=, //=, ++, --
 Scope:
-() （）
-no indentation for scope, use ：。
-
+()
+{}
 Misc:
-space
-, 、
-. ．
-: ：
+,
+.
 comment: ＃
-'', “” e.g. “this is a string”
-numbers:
-ㄧ二三四五六七八九零點 
+'', "" 
 
-Primitives:
-boolean, int, float/double, str
+1. declare variables
+x = 1
+y = 1.0
+string = "hello"
+bool = true
+2. conditionals and iterations
+conditional(if, elif, elif, ..., else)
+e.g. conditional(if(x > 0){...}, if(x == 0){...}, if(null){...})
+for(condition){}
+while(condition){}
+3. objects and functions
 
-Data structures:
-list: [1,2,3] ㄌㄙㄊ（一、二、三）, append() ㄚㄆㄣ（）, index e.g. arr[0] ㄧㄉ（零）, remove use del, substring ㄙㄅ（）
 
-dictionary: {1:1, 2:2} ㄉㄎㄊ（一：ㄧ、二：二）, most methods
-『』
-set?
-tuple?
+
 
 Example:
 
@@ -52,6 +44,8 @@ var2 = 2
 var3 = var1 * var2
 
 def test(input1, input2):
+  if input1 <= 0:
+    return None
   dict1 = {}
   for i in range(0, input1):
     dict1[i] = []
@@ -63,5 +57,5 @@ def test(input1, input2):
 
 list1 = [1, 2, 3, 4, 5]
 list1.append(var3) # 6
-print("輸出： ", test(3, list1))
+print("output: ", test(3, list1))
 
