@@ -8,7 +8,7 @@ function, return
 built-in functions:len(), print()
 
 Arithmetics:
-+, -, *, /, //, **, %
++, -, *, /, // /_, **, %
 >, <, =, >=, <=, ==, !=, +=, -=, *=, /=, //=, ++, --
 Scope:
 ()
@@ -16,23 +16,31 @@ Scope:
 Misc:
 ,
 .
-comment: ＃
+comment: //
 '', "" 
 
 1. declare variables
 x = 1
 y = 1.0
 string = "hello"
+string.len() // 5
 bool = true
 2. conditionals and iterations
 conditional(if, elif, elif, ..., else)
 e.g. conditional(if(x > 0){...}, if(x == 0){...}, if(null){...})
 for(condition){}
+for(i = 0, i < 5, i++){}
 while(condition){}
 3. objects and functions
+out(...) // stdout
+function = func(var1, var2){...}
+func(*args)
+arr = array(1, 2, 3, 4, 5)
+arr.at(), arr.len(), arr.add(), arr.rm() // by index, arr.subarr(start, end)
 
-
-
+dog = class(name, color, bark...){
+  bark = func(){}
+}
 
 Example:
 
