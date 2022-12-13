@@ -1,0 +1,2 @@
+supports single statements for variable declarations, only int and float
+basic arithmetics, +, - , *, /, /_, **, %, (, )
