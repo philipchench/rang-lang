@@ -39,10 +39,40 @@ arr = array(1, 2, 3, 4, 5)
 arr.at(), arr.len(), arr.add(), arr.rm() // by index, arr.subarr(start, end)
 
 dog = class(name, color, bark...){
-  bark = func(){}
+  // write any default implementations
+  bark = func(){out("woof")}
 }
+export dog // other files can use
+
+husky = dog("husky", "black", func(){out("WOOOOFFF")})
 
 Example:
+
+var1 = 3;
+var2 = 2;
+var3 = var1 * var2;
+
+test = func(input1, input2){
+  conditional(
+    if(input <= 0){
+    return null
+    }
+  );
+  output = array();
+  for(i = 0, i < input1, i++){
+    output.add(array());
+    j = 0;
+    while (j < input2.len()){
+      output.at(i).add(input2.at(j) * i);
+      j++;
+    }
+  }
+  return output;
+}
+
+list1 = array(1, 2, 3, 4, 5);
+list1.add(var3); # 6
+out("output: ", test(3, list1));
 
 
 Python3:
@@ -54,14 +84,14 @@ var3 = var1 * var2
 def test(input1, input2):
   if input1 <= 0:
     return None
-  dict1 = {}
+  output = []
   for i in range(0, input1):
-    dict1[i] = []
+    output.append([])
     j = 0
     while j < len(input2):
-      dict1[i].append(input2[j] * i)
+      output[i].append(input2[j] * i)
       j += 1
-  return dict1
+  return output
 
 list1 = [1, 2, 3, 4, 5]
 list1.append(var3) # 6
