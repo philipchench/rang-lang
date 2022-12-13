@@ -1,2 +1,20 @@
 supports single statements for variable declarations, only int and float
+variable declaration: variable names
 basic arithmetics, +, - , *, /, /_, **, %, (, )
+endline: ;
+stdout: out()
+comment: //
+
+example:
+x = 3;
+y = 2;
+z = (x + y) * x - y ** (x % 10);
+out(z); // 7
+
+<program> ::= { <statement> }
+<statement> ::= <exp> ";"
+<exp> ::= <id> "=" <additive-exp>
+<additive-exp> ::= <term> { ("+" | "-") <term> }
+<term> ::= <factor> { ("*" | "/") <factor> }
+<factor> ::= "(" <exp> ")" | <unary_op> <factor> | <int> | <id>
+<unary_op> ::= "-"
