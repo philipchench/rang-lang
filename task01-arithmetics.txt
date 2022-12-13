@@ -2,7 +2,7 @@ supports single statements for variable declarations, only int and float
 variable declaration: variable names
 basic arithmetics, +, - , *, /, /_, **, %, (, )
 endline: ;
-stdout: out()
+stdout: out(), comma (,)
 comment: //
 
 example:
@@ -12,9 +12,10 @@ z = (x + y) * x - y ** (x % 10);
 out(z); // 7
 
 <program> ::= { <statement> }
-<statement> ::= <exp> ";"
+<statement> ::= <exp> ";" | <function-call> ";"
 <exp> ::= <id> "=" <additive-exp>
 <additive-exp> ::= <term> { ("+" | "-") <term> }
 <term> ::= <factor> { ("*" | "/") <factor> }
 <factor> ::= "(" <exp> ")" | <unary_op> <factor> | <int> | <id>
 <unary_op> ::= "-"
+<function-call> ::= <id> "(" [ <exp> { "," <exp> } ] ")"
