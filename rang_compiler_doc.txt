@@ -1,1 +1,110 @@
+lexeme:
+(
+)
+{
+}
+;
+,
+integer
+float
+identifiers
+string 
+"
+.
+!
+=
++
+-
+*
+/
+/_
+**
+%
+&&
+||
+==
+>
+<
+>=
+<=
+!=
++=
+-=
+*=
+/=
+/_=
+++
+--
+true
+false
+return
+break
+continue
+cond
+if
+for
+while
+out
+func
+array
+at
+add
+rm
+len
+//
+
+( : 0
+) : 1
+{ : 2
+} : 3
+; : 4
+, : 5
+integer : 6
+float : 7
+identifiers : 8
+string : 9
+" : 10
+. : 11
+! : 12
+= : 13
++ : 14
+- : 15
+* : 16
+/ : 17
+/_ : 18
+** : 19
+% : 20
+&& : 21
+|| : 22
+== : 23
+> : 24
+< : 25
+>= : 26
+<= : 27
+!= : 28
++= : 29
+-= : 30
+*= : 31
+/= : 32
+/_= : 33
+++ : 34
+-- : 35
+true : 36
+false : 37
+return : 38
+break : 39
+continue : 40
+cond : 41
+if : 42
+for : 43
+while : 44
+out : 45
+func : 46
+array : 47
+at : 48
+add : 49
+rm : 50
+len : 51
+// : 52
+
 
