@@ -19,3 +19,22 @@ out(z); // 7
 <factor> ::= "(" <exp> ")" | <unary_op> <factor> | <int> | <id>
 <unary_op> ::= "-"
 <function-call> ::= <id> "(" [ <exp> { "," <exp> } ] ")"
+
+tokens:
+{
+}
+(
+)
++
+-
+*
+/
+/_
+**
+%
+;
+id string (out is also an identifier)
+integer 0~9
+float 0~9 . 0~9
+,
+//
