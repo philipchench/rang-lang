@@ -1,2 +1,2 @@
 # rang-lang
-Rang is a very wrong programming language.
+Rang is my DIY programming language.

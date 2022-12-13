@@ -1,7 +1,7 @@
 supports single statements for variable declarations, only int and float
 variable declaration: variable names
 basic arithmetics, +, - , *, /, /_, **, %, (, )
-endline: ;
+end line: ;
 stdout: out(), comma (,)
 comment: //
 
@@ -20,21 +20,39 @@ out(z); // 7
 <unary_op> ::= "-"
 <function-call> ::= <id> "(" [ <exp> { "," <exp> } ] ")"
 
+program = Program(list of statements)
+statement = Exp(exp) | FunctionCall(string, exp_list)
+exp = Assign(string, exp (only some))
+            | Var(string)
+            | BinOp(bin_op, exp, exp)
+            | UnaryOp(unary_op, exp)
+            | Const(number)
+number = Int(int)
+        | Float(float)
+
 tokens:
-{
-}
-(
-)
-+
--
-*
-/
-/_
-**
-%
-;
-id string (out is also an identifier)
+0: {
+1: }
+2: (
+3: )
+4: +
+5: -
+6: *
+7: /
+8: /_
+9: **
+10: %
+11: ;
+id string (out is also an identifier) // no lexeme code for variable values.
 integer 0~9
 float 0~9 . 0~9
-,
+12:
 //
+
+OPEN_BRACKET = 0
+CLOSE_BRACKET = 1
+OPEN_PAREN = 2
+CLOSE_PAREN = 3
+ARITHOP = 4
+SEMICOLON = 5
+COMMA = 6
