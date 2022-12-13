@@ -1,7 +1,7 @@
 
 Supports:
 if, else if, else
-and, or, not
+&&, ||, !
 true, false, null
 for, while, break, continue,
 function, return
