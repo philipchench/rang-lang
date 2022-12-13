@@ -26,8 +26,8 @@ string = "hello"
 string.len() // 5
 bool = true
 2. conditionals and iterations
-conditional(if, elif, elif, ..., else)
-e.g. conditional(if(x > 0){...}, if(x == 0){...}, if(null){...})
+cond(if, elif, elif, ..., else)
+e.g. cond(if(x > 0){...}, if(x == 0){...}, if(null){...})
 for(condition){}
 for(i = 0, i < 5, i++){}
 while(condition){}
@@ -53,7 +53,7 @@ var2 = 2;
 var3 = var1 * var2;
 
 test = func(input1, input2){
-  conditional(
+  cond(
     if(input <= 0){
     return null
     }
