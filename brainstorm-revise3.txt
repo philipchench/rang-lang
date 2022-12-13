@@ -75,25 +75,4 @@ list1.add(var3); # 6
 out("output: ", test(3, list1));
 
 
-Python3:
-
-var1 = 3
-var2 = 2
-var3 = var1 * var2
-
-def test(input1, input2):
-  if input1 <= 0:
-    return None
-  output = []
-  for i in range(0, input1):
-    output.append([])
-    j = 0
-    while j < len(input2):
-      output[i].append(input2[j] * i)
-      j += 1
-  return output
-
-list1 = [1, 2, 3, 4, 5]
-list1.append(var3) # 6
-print("output: ", test(3, list1))
 
