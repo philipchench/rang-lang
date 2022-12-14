@@ -12,47 +12,53 @@ z = (x + y) * x - y ** (x % 10);
 out(z); // 7
 
 <program> ::= { <statement> }
-<statement> ::= <exp> ";" | <function-call> ";"
+<statement> ::= <exp> ";"
 <exp> ::= <id> "=" <additive-exp>
 <additive-exp> ::= <term> { ("+" | "-") <term> }
 <term> ::= <factor> { ("*" | "/") <factor> }
-<factor> ::= "(" <exp> ")" | <unary_op> <factor> | <int> | <id>
+<factor> ::= "(" <exp> ")" | <unary_op> <factor> | <int> | <id> | <function-call>
 <unary_op> ::= "-"
 <function-call> ::= <id> "(" [ <exp> { "," <exp> } ] ")"
 
 program = Program(list of statements)
-statement = Exp(exp) | FunctionCall(string, exp_list)
+statement = Exp(exp)
 exp = Assign(string, exp (only some))
             | Var(string)
             | BinOp(bin_op, exp, exp)
             | UnaryOp(unary_op, exp)
             | Const(number)
+            | FunctionCall(string, exp_list)
 number = Int(int)
         | Float(float)
 
 tokens:
-0: {
-1: }
-2: (
-3: )
-4: +
-5: -
-6: *
-7: /
-8: /_
-9: **
-10: %
-11: ;
+{  // not yet
+}  // not yet
+(
+)
+=
++
+-
+*
+/
+floor()
+**
+%
+;
 id string (out is also an identifier) // no lexeme code for variable values.
 integer 0~9
 float 0~9 . 0~9
-12:
+,
 //
 
 OPEN_BRACKET = 0
 CLOSE_BRACKET = 1
 OPEN_PAREN = 2
 CLOSE_PAREN = 3
-ARITHOP = 4
-SEMICOLON = 5
-COMMA = 6
+ASSIGN = 4
+ARITHOP = 5
+SEMICOLON = 6
+COMMA = 7
+ID = 8
+INT = 9
+FLOAT = 10

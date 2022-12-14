@@ -4,9 +4,12 @@ class Utils:
     CLOSE_BRACKET = 1
     OPEN_PAREN = 2
     CLOSE_PAREN = 3
-    ARITHOP = 4
-    SEMICOLON = 5
-    COMMA = 6
-    VAR = 7
+    ASSIGN = 4
+    ARITHOP = 5
+    SEMICOLON = 6
+    COMMA = 7
+    ID = 8
+    INT = 9
+    FLOAT = 10
 
 

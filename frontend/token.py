@@ -5,4 +5,4 @@ class Token:
         self.line_idx = line_idx
 
     def __str__(self):
-        return "< " + self.POS + ", \"" + self.lexeme + "\" >"
+        return "< " + str(self.POS) + ", \"" + str(self.lexeme) + "\" >"
