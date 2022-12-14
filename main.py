@@ -1,5 +1,8 @@
 import sys
 
+from frontend.parser import Parser
+from frontend.scanner import Scanner
+
 
 def main():
 
@@ -28,11 +31,11 @@ def main():
         sys.stderr.write("ERROR: Cannot read file")
         sys.exit(1)
 
-    # scanner = Scanner(f)
-    # parser = Parser(scanner)
+    scanner = Scanner(f)
+    parser = Parser(scanner)
 
     if s:
-        print("hello world")
+        parser.debug_scanner()
 
     sys.exit()
 

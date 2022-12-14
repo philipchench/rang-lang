@@ -7,4 +7,6 @@ class Utils:
     ARITHOP = 4
     SEMICOLON = 5
     COMMA = 6
+    VAR = 7
+
 
