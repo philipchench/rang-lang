@@ -35,7 +35,8 @@ def main():
     parser = Parser(scanner)
 
     if s:
-        parser.debug_scanner()
+        parser.parse()
+        parser.print_tree()
 
     sys.exit()
 

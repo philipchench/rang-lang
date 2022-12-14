@@ -22,14 +22,12 @@ out(z); // 7
 
 program = Program(list of statements)
 statement = Exp(exp)
-exp = Assign(string, exp (only some))
+exp = Assign(Var, exp (only some))
             | Var(string)
             | BinOp(bin_op, exp, exp)
             | UnaryOp(unary_op, exp)
-            | Const(number)
+            | Const(num_type, number)
             | FunctionCall(string, exp_list)
-number = Int(int)
-        | Float(float)
 
 tokens:
 {  // not yet

@@ -77,14 +77,20 @@ class Scanner:
                     is_id = True
                 new_char = self.next_char()
             self.char_index -= 1
+            # integer
             if not is_id and not is_float:
                 return Token(Utils.INT, token, self.line_idx)
+            # float
             elif not is_id:
                 return Token(Utils.FLOAT, token, self.line_idx)
+            # alphanumeric underscore combination string
             elif not is_float:
+                # NOTE TO SELF: if need to find stop words in the future like func or return, can just check here
+                # keep scanner simple, can sacrifice a bit of runtime
                 return Token(Utils.ID, token, self.line_idx)
             else:
                 self.token_error(token)  # should never happen
+        # bad char
         else:
             token += new_char
             self.token_error(token)

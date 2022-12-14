@@ -12,4 +12,9 @@ class Utils:
     INT = 9
     FLOAT = 10
 
+    open_bracket = 0
+    close_bracket = 1
+    open_paren = 2
+
+
 
