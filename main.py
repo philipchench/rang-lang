@@ -36,6 +36,7 @@ def main():
 
     if s:
         parser.parse()
+        # parser.debug_scanner()
         parser.print_tree()
 
     sys.exit()

@@ -6,6 +6,7 @@ class Program:
         self.statements = []
 
     def add_statement(self, statement: Exp):
+        # NOTE TO SELF: might need to change from Exp to a new Stmt class in the future
         self.statements.append(statement)
 
     def get_statements(self):

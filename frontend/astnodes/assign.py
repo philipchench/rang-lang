@@ -8,6 +8,6 @@ class Assign:
         self.exp = exp
 
     def __str__(self):
-        res = "Assignment: \nVariable name = " + str(self.var) + ", assignment = " + str(self.exp)
+        res = "Assign(Variable name = " + str(self.var) + ", assignment = " + str(self.exp) + ")"
         return res
 

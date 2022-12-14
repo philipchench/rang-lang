@@ -9,8 +9,15 @@ class Scanner:
         self.curr_line = self.file.readline()
         self.char_index = -1
         self.line_idx = 0
+        self.tokens = []
 
-    def next_token(self):
+    def scan(self):
+        curr_token = self.next_token()
+        while curr_token:
+            self.tokens.append(curr_token)
+            curr_token = self.next_token()
+
+    def next_token(self) -> Token:
         token = ""
         new_char = self.next_char()
         if not new_char:
@@ -28,19 +35,13 @@ class Scanner:
             return Token(Utils.ASSIGN, token, self.line_idx)
         elif new_char == "+":
             token += new_char
-            return Token(Utils.ARITHOP, token, self.line_idx)
+            return Token(Utils.ADDOP, token, self.line_idx)
         elif new_char == "-":
             token += new_char
-            return Token(Utils.ARITHOP, token, self.line_idx)
+            return Token(Utils.ADDOP, token, self.line_idx)
         elif new_char == "*":
             token += new_char
-            new_char = self.next_char()
-            if new_char == "*":
-                token += new_char
-                return Token(Utils.ARITHOP, token, self.line_idx)
-            else:
-                self.char_index -= 1  # move back if we peeked and don't need it
-                return Token(Utils.ARITHOP, token, self.line_idx)
+            return Token(Utils.MULTOP, token, self.line_idx)
         elif new_char == "/":
             token += new_char
             new_char = self.next_char()
@@ -51,10 +52,10 @@ class Scanner:
                 return self.next_token()
             else:
                 self.char_index -= 1  # move back if we peeked and don't need it
-                return Token(Utils.ARITHOP, token, self.line_idx)
+                return Token(Utils.MULTOP, token, self.line_idx)
         elif new_char == "%":
             token += new_char
-            return Token(Utils.ARITHOP, token, self.line_idx)
+            return Token(Utils.MULTOP, token, self.line_idx)
         elif new_char == ";":
             token += new_char
             return Token(Utils.SEMICOLON, token, self.line_idx)
@@ -95,7 +96,7 @@ class Scanner:
             token += new_char
             self.token_error(token)
 
-    def next_char(self):
+    def next_char(self) -> str:
         if not self.curr_line:
             return None  # EOF
         self.char_index += 1

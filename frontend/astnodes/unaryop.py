@@ -7,4 +7,4 @@ class UnaryOp:
         self.exp = exp
 
     def __str__(self):
-        res = "Unary Operation: \nUnary Operator = " + self.operator + ", expression = " + str(self.exp)
+        return "UnaryOp(Operator = " + self.operator + ", expression = " + str(self.exp) + ")"

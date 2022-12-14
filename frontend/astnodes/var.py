@@ -3,4 +3,4 @@ class Var:
         self.name = name
 
     def __str__(self):
-        return "Variable:\nName = " + self.name
+        return self.name
