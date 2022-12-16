@@ -1,3 +1,10 @@
-while(true){
-out(x);
+f = func(x, y) {
+    while (true) {
+        if (y < x) {
+            meow();
+        } else {
+            break;
+        }
+        x = x - 1;
+    }
 }

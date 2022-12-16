@@ -10,5 +10,5 @@ class Function:
             res += "\t\t" + str(arg) + ",\n"
         res += ", \n\t\t Block = "
         for statement in self.statement_list:
-            res += "\n\t\t" + statement
+            res += "\n\t\t" + str(statement)
         return res

@@ -21,17 +21,17 @@ examples:
 
 <program> ::= { <statement> }
 <statement> ::= <exp> ";"
-                | <assignment-statement> ";"
-                | <conditional-statement> [ ";" ]
-                | <iteration-statement> [ ";" ]
-                | <jump-statement> ";"
-<assignment-statement> ::= <id> "=" <exp>
-                        | <id> "=" <function>
-<conditional-statement> ::= "if" "(" <exp> ")" "{" { <statement> } "}" [ "else" "{" { <statement> } "}" ]
-<iteration-statement> ::= "while" "(" <exp> ")" "{" { <statement> } "}"
-<jump-statement> ::= "continue"
-                   | "break"
-                   | "return" <exp>
+                | <assignment-statement>
+                | <conditional-statement>
+                | <iteration-statement>
+                | <jump-statement>
+<assignment-statement> ::= <id> "=" <exp> ";"
+                        | <id> "=" <function> [ ";" ]
+<conditional-statement> ::= "if" "(" <exp> ")" "{" { <statement> } "}" [ "else" "{" { <statement> } "}" ] [ ";" ]
+<iteration-statement> ::= "while" "(" <exp> ")" "{" { <statement> } "}" [ ";" ]
+<jump-statement> ::= "continue"  ";"
+                   | "break"  ";"
+                   | "return" <exp>  ";"
 <exp> ::= <logical-or-exp>
 <logical-or-exp> ::= <logical-and-exp> { "||" <logical-and-exp> }
 <logical-and-exp> ::= <equality-exp> { "&&" <equality-exp> }
@@ -82,5 +82,7 @@ tokens:
     BREAK = 18
     CONTINUE = 19
     UNARY = 20
-    ANDOR = 21  # &&, ||
-    FUNC = 22
+    AND = 21
+    OR = 22
+    FUNC = 23
+    EOF = 24

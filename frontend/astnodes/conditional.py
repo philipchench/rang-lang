@@ -7,9 +7,9 @@ class Conditional:
     def __str__(self):
         res = "Conditional( \n\t\tIf condition = " + str(self.exp) + ", \n\t\t If block = "
         for statement in self.if_list:
-            res += "\n\t\t" + statement
+            res += "\n\t\t" + str(statement)
         if self.else_list:
             res += ", \n\t\tElse block = "
             for statement in self.else_list:
-                res += "\n\t\t" + statement
-        return res
+                res += "\n\t\t" + str(statement)
+        return res + ")"

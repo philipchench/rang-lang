@@ -107,7 +107,7 @@ class Scanner:
             new_char = self.next_char()
             if new_char == "&":
                 token += new_char
-                return Token(Utils.ANDOR, token, self.line_idx)
+                return Token(Utils.AND, token, self.line_idx)
             else:
                 self.token_error(token)
         # ||
@@ -116,7 +116,7 @@ class Scanner:
             new_char = self.next_char()
             if new_char == "|":
                 token += new_char
-                return Token(Utils.ANDOR, token, self.line_idx)
+                return Token(Utils.OR, token, self.line_idx)
             else:
                 self.token_error(token)
         elif new_char == ";":

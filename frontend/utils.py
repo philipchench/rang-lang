@@ -21,6 +21,7 @@ class Utils:
     BREAK = 18
     CONTINUE = 19
     UNARY = 20
-    ANDOR = 21  # &&, ||
-    FUNC = 22
-    EOF = 23
+    AND = 21
+    OR = 22
+    FUNC = 23
+    EOF = 24
