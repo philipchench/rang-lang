@@ -1,1 +1,3 @@
-!x != 4; > >= < <==== &&||if else while break return continue
+while(true){
+out(x);
+}

@@ -5,6 +5,7 @@ from frontend.astnodes.binop import BinOp
 from frontend.astnodes.const import Const
 from frontend.astnodes.exp import Exp
 from frontend.astnodes.functioncall import FunctionCall
+from frontend.astnodes.iterwhile import IterWhile
 from frontend.astnodes.program import Program
 from frontend.astnodes.unaryop import UnaryOp
 from frontend.astnodes.var import Var
@@ -47,19 +48,56 @@ class Parser:
 
     def debug_scanner(self):
         self.scan()
-        while self.curr_token:
+        while self.curr_token.POS != Utils.EOF:
             print(self.curr_token)
             self.next_token()
 
     def parse(self):
         self.scan()
-        while self.curr_token:
+        while self.curr_token.POS != Utils.EOF:
             # print("tree: ")
             # self.print_tree()
             self.tree.add_statement(self.parse_statement())
 
     def parse_statement(self):
-        # for now, it's just parse expression
+        # try assignment
+        first = self.curr_token
+        # while loop
+        if first.POS == Utils.WHILE:
+            self.next_token()
+            return self.parse_while()
+        # conditional
+        elif first.POS == Utils.IF:
+            print("if")
+            return
+        elif first.POS == Utils.RETURN:
+            print("return")
+            return
+        elif first.POS == Utils.CONTINUE:
+            print("continue")
+            return
+        elif first.POS == Utils.BREAK:
+            print("break")
+            return
+        self.next_token()
+        if self.curr_token.POS == Utils.ASSIGN:
+            # assignment
+            if first.POS == Utils.ID:
+                self.next_token()
+                # TODO: parse function dec/init
+                exp = self.parse_exp()
+                expression = Exp(Assign(Var(first.lexeme), exp))
+                # for now, assignment must end with semicolon
+                if self.curr_token.POS != Utils.SEMICOLON:
+                    self.parse_error("Missing semicolon.")
+                self.next_token()
+                return expression
+            # e.g. 2 = 4, cannot assign expression to non-variable
+            else:
+                self.parse_error("Cannot assign expression to non-variable.")
+
+        # try expression
+        self.prev_token()
         expression = self.parse_exp()
         # for now, statement must end with semicolon
         if self.curr_token.POS != Utils.SEMICOLON:
@@ -69,23 +107,8 @@ class Parser:
 
     def parse_exp(self):
         # need to deal with assignment (variable and expression) or just expression
-        # for now, parse_exp deals directly with additive_exp
+        # for now, parse_exp deals directly with logical-or-exp
 
-        # try assignment
-        first = self.curr_token
-        self.next_token()
-        if self.curr_token.POS == Utils.ASSIGN:
-            # assignment
-            if first.POS == Utils.ID:
-                self.next_token()
-                exp = self.parse_exp()
-                return Exp(Assign(Var(first.lexeme), exp))
-            # e.g. 2 = 4, cannot assign expression to non-variable
-            else:
-                self.parse_error("Cannot assign expression to non-variable.")
-
-        # try additive expression
-        self.prev_token()
         term = self.parse_term()
         while self.curr_token.POS == Utils.ADDOP:
             add_op = self.curr_token.lexeme
@@ -109,7 +132,7 @@ class Parser:
             self.next_token()
             exp = self.parse_exp()
             if self.curr_token.POS != Utils.CLOSE_PAREN:
-                self.parse_error("Missing closing parenthesis for expression/factor.")
+                self.parse_error("Missing close parenthesis for expression/factor.")
             self.next_token()
             return exp
         # check if unary (negative sign), NOTE TO SELF: MAKE FUNCTION IF MORE UNARY OPS IN FUTURE
@@ -139,18 +162,45 @@ class Parser:
     def parse_func_args(self):
         arguments = []
         if self.curr_token.POS != Utils.OPEN_PAREN:
-            self.parse_error("Missing closing parenthesis for function call.")
+            self.parse_error("Missing open parenthesis for function call.")
         self.next_token()
         # VERY DANGEROUS!! Must check for EOF if there's no close parenthesis at all
         while self.curr_token.POS != Utils.CLOSE_PAREN:
-            if not self.curr_token:
-                self.parse_error("Missing closing parenthesis for function call.")
+            if self.curr_token.POS == Utils.EOF:
+                self.parse_error("Missing close parenthesis for function call.")
             exp = self.parse_exp()
             arguments.append(exp)
-            if self.curr_token and self.curr_token.POS == Utils.COMMA:
+            if self.curr_token.POS == Utils.COMMA:
                 self.next_token()
         self.next_token()
         return arguments
+
+    def parse_while(self):
+        if self.curr_token.POS != Utils.OPEN_PAREN:
+            self.parse_error("Missing open parenthesis for while loop.")
+        self.next_token()
+        # condition is an expression
+        exp = self.parse_exp()
+        if self.curr_token.POS != Utils.CLOSE_PAREN:
+            self.parse_error("Missing close parenthesis for while loop.")
+        self.next_token()
+        statements = []
+        # start of while block
+        if self.curr_token.POS != Utils.OPEN_BRACKET:
+            self.parse_error("Missing open bracket for while loop.")
+        self.next_token()
+        while self.curr_token.POS != Utils.CLOSE_BRACKET:
+            if self.curr_token.POS == Utils.EOF:
+                self.parse_error("Missing close bracket for while loop.")
+            statement = self.parse_statement()
+            statements.append(statement)
+            if self.curr_token.POS == Utils.COMMA:
+                self.next_token()
+        self.next_token()
+        return IterWhile(exp, statements)
+
+    def parse_conditional(self):
+        pass
 
     def print_tree(self):
         print(self.tree)

@@ -16,6 +16,7 @@ class Scanner:
         while curr_token:
             self.tokens.append(curr_token)
             curr_token = self.next_token()
+        self.tokens.append(Token(Utils.EOF, "", self.line_idx))
 
     def next_token(self):
         token = ""
@@ -189,3 +190,7 @@ class Scanner:
     def token_error(self, token):
         sys.stderr.write("Line " + str(self.line_idx) + ": " + token + " is not a valid input.")
         sys.exit(1)
+
+    def print_tokens(self):
+        for token in self.tokens:
+            print(token)

@@ -1,4 +1,4 @@
-class Return:
+class JumpReturn:
     def __init__(self, exp):
         self.exp = exp
 

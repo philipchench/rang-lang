@@ -23,3 +23,4 @@ class Utils:
     UNARY = 20
     ANDOR = 21  # &&, ||
     FUNC = 22
+    EOF = 23
