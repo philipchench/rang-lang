@@ -50,11 +50,6 @@ class Parser:
         while self.curr_token:
             print(self.curr_token)
             self.next_token()
-        self.prev_token()
-        print("\n\nbackwards\n\n")
-        while self.curr_token:
-            print(self.curr_token)
-            self.prev_token()
 
     def parse(self):
         self.scan()
@@ -68,7 +63,7 @@ class Parser:
         expression = self.parse_exp()
         # for now, statement must end with semicolon
         if self.curr_token.POS != Utils.SEMICOLON:
-            self.parse_error()
+            self.parse_error("Missing semicolon.")
         self.next_token()
         return expression
 
@@ -87,7 +82,7 @@ class Parser:
                 return Exp(Assign(Var(first.lexeme), exp))
             # e.g. 2 = 4, cannot assign expression to non-variable
             else:
-                self.parse_error()
+                self.parse_error("Cannot assign expression to non-variable.")
 
         # try additive expression
         self.prev_token()
@@ -114,7 +109,7 @@ class Parser:
             self.next_token()
             exp = self.parse_exp()
             if self.curr_token.POS != Utils.CLOSE_PAREN:
-                self.parse_error()
+                self.parse_error("Missing closing parenthesis for expression/factor.")
             self.next_token()
             return exp
         # check if unary (negative sign), NOTE TO SELF: MAKE FUNCTION IF MORE UNARY OPS IN FUTURE
@@ -139,17 +134,17 @@ class Parser:
             self.next_token()
             return op
         else:
-            self.parse_error()
+            self.parse_error("Bad token for factor.")
 
     def parse_func_args(self):
         arguments = []
         if self.curr_token.POS != Utils.OPEN_PAREN:
-            self.parse_error("No close parenthesis in functional call.")
+            self.parse_error("Missing closing parenthesis for function call.")
         self.next_token()
         # VERY DANGEROUS!! Must check for EOF if there's no close parenthesis at all
         while self.curr_token.POS != Utils.CLOSE_PAREN:
             if not self.curr_token:
-                self.parse_error()
+                self.parse_error("Missing closing parenthesis for function call.")
             exp = self.parse_exp()
             arguments.append(exp)
             if self.curr_token and self.curr_token.POS == Utils.COMMA:
@@ -164,5 +159,5 @@ class Parser:
         sys.stderr.write("Line " + str(self.curr_token.line_idx) + ": " + str(self.curr_token) + " caused parsing "
                                                                                                  "error.")
         if message:
-            sys.stderr.write(message)
+            sys.stderr.write("\n" + message)
         sys.exit(1)

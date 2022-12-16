@@ -1,0 +1,86 @@
+Build on task 1
+basic arithmetics, +, - , *, /, %, (, ), exp(), floor()
+end line: ;
+stdout: out(), comma (,)
+comment: //
+
+Philosophy: limited palette, no support for strings yet, only introduce necessities.
+
+new support:
+comparisons: >, <, >=, <=
+equality: ==, !=
+and, or, not: &&, ||, !
+booleans: true, false
+conditionals: if(){}, else{}
+define functions: f = func(args){};
+return, continue, break
+while loop: while(){}
+
+examples:
+
+
+<program> ::= { <statement> }
+<statement> ::= <exp> ";"
+                | <assignment-statement> ";"
+                | <conditional-statement> [ ";" ]
+                | <iteration-statement> [ ";" ]
+                | <jump-statement> ";"
+<assignment-statement> ::= <id> "=" <exp>
+                        | <id> "=" <function>
+<conditional-statement> ::= "if" "(" <exp> ")" "{" { <statement> } "}" [ "else" "{" { <statement> } "}" ]
+<iteration-statement> ::= "while" "(" <exp> ")" "{" { <statement> } "}"
+<jump-statement> ::= "continue"
+                   | "break"
+                   | "return" <exp>
+<exp> ::= <logical-or-exp>
+<logical-or-exp> ::= <logical-and-exp> { "||" <logical-and-exp> }
+<logical-and-exp> ::= <equality-exp> { "&&" <equality-exp> }
+<equality-exp> ::= <relational-exp> { ("!=" | "==") <relational-exp> }
+<relational-exp> ::= <additive-exp> { ("<" | ">" | "<=" | ">=") <additive-exp> }
+<additive-exp> ::= <term> { ("+" | "-") <term> }
+<term> ::= <factor> { ("*" | "/" | "%") <factor> }
+<factor> ::= "(" <exp> ")" | <unary_op> <factor> | <num> | <id> | <function-call>
+<unary_op> ::= "-" | "!"
+<function-call> ::= <id> "(" [ <exp> { "," <exp> } ] ")"
+<function> ::= "func" "(" [ <id> { "," <id> } ] ")" "{" { <statement> } "}"
+
+*** true evaluates to 1, false evaluates to 0
+
+program = Program(statement_list)
+statement = Exp(exp), Assign(Var, exp),
+        Conditional(exp, statement_list, statement_list=Optional) // 3rd arg is for else
+        While(exp, statement_list)
+        Continue(), Break(), Return()
+
+Function(string, var_list, statement_list)
+exp = Var(string)
+    | BinOp(bin_op, exp, exp)
+    | UnaryOp(unary_op, exp)
+    | Const(num_type, number)
+    | FunctionCall(string, exp_list)
+
+tokens:
+
+    OPEN_BRACKET = 0
+    CLOSE_BRACKET = 1
+    OPEN_PAREN = 2
+    CLOSE_PAREN = 3
+    ASSIGN = 4
+    ADDOP = 5
+    MULTOP = 6
+    SEMICOLON = 7
+    COMMA = 8
+    ID = 9
+    INT = 10
+    FLOAT = 11
+    EQUALITY = 12
+    COMPARISON = 13
+    WHILE = 14
+    IF = 15
+    ELSE = 16
+    RETURN = 17
+    BREAK = 18
+    CONTINUE = 19
+    UNARY = 20
+    ANDOR = 21  # &&, ||
+    FUNC = 22

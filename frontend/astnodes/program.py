@@ -14,7 +14,6 @@ class Program:
 
     def __str__(self):
         res = "Rang Program — " + str(len(self.statements)) + " statements: \n\n"
-        for statement in self.statements:
-            res += str(statement) + "\n"
+        for i in range(len(self.statements)):
+            res += "Statement " + str(i) + ":\n" + str(self.statements[i]) + "\n"
         return res
-

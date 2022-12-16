@@ -8,6 +8,6 @@ class BinOp:
         self.exp2 = exp2
 
     def __str__(self):
-        res = "BinOp(Operator = " + self.operator + \
-              ", expression 1 = " + str(self.exp1) + ", expression 2 = " + str(self.exp2) + ")"
+        res = "BinOp(Operator = \n\t\t" + self.operator + \
+              ", expression 1 = \n\t\t" + str(self.exp1) + ", expression 2 = \n\t\t" + str(self.exp2) + ")"
         return res

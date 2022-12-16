@@ -1,6 +1,6 @@
 
 Supports:
-if, else if, else
+if, else
 &&, ||, !
 true, false, null
 for, while, break, continue,
@@ -9,7 +9,7 @@ built-in functions:len(), print()
 
 Arithmetics:
 +, -, *, /, // /_, **, %
->, <, =, >=, <=, ==, !=, +=, -=, *=, /=, //=, ++, --
+>, <, =, >=, <=, ==, !=
 Scope:
 ()
 {}

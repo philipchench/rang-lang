@@ -12,10 +12,14 @@ class Utils:
     ID = 9
     INT = 10
     FLOAT = 11
-
-    open_bracket = 0
-    close_bracket = 1
-    open_paren = 2
-
-
-
+    EQUALITY = 12
+    COMPARISON = 13
+    WHILE = 14
+    IF = 15
+    ELSE = 16
+    RETURN = 17
+    BREAK = 18
+    CONTINUE = 19
+    UNARY = 20
+    ANDOR = 21  # &&, ||
+    FUNC = 22

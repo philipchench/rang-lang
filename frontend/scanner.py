@@ -17,22 +17,35 @@ class Scanner:
             self.tokens.append(curr_token)
             curr_token = self.next_token()
 
-    def next_token(self) -> Token:
+    def next_token(self):
         token = ""
         new_char = self.next_char()
         if not new_char:
             return None
         while new_char == " " or new_char == "\t" or new_char == "\n":
             new_char = self.next_char()
-        if new_char == "(":
+        if new_char == "{":
+            token += new_char
+            return Token(Utils.OPEN_BRACKET, token, self.line_idx)
+        elif new_char == "}":
+            token += new_char
+            return Token(Utils.CLOSE_BRACKET, token, self.line_idx)
+        elif new_char == "(":
             token += new_char
             return Token(Utils.OPEN_PAREN, token, self.line_idx)
         elif new_char == ")":
             token += new_char
             return Token(Utils.CLOSE_PAREN, token, self.line_idx)
+        # =, ==
         elif new_char == "=":
             token += new_char
-            return Token(Utils.ASSIGN, token, self.line_idx)
+            new_char = self.next_char()
+            if new_char == "=":
+                token += new_char
+                return Token(Utils.EQUALITY, token, self.line_idx)
+            else:
+                self.char_index -= 1  # move back if we peeked and don't need it
+                return Token(Utils.ASSIGN, token, self.line_idx)
         elif new_char == "+":
             token += new_char
             return Token(Utils.ADDOP, token, self.line_idx)
@@ -42,6 +55,7 @@ class Scanner:
         elif new_char == "*":
             token += new_char
             return Token(Utils.MULTOP, token, self.line_idx)
+        # /, //
         elif new_char == "/":
             token += new_char
             new_char = self.next_char()
@@ -56,6 +70,54 @@ class Scanner:
         elif new_char == "%":
             token += new_char
             return Token(Utils.MULTOP, token, self.line_idx)
+        # !, !=
+        elif new_char == "!":
+            token += new_char
+            new_char = self.next_char()
+            if new_char == "=":
+                token += new_char
+                return Token(Utils.EQUALITY, token, self.line_idx)
+            else:
+                self.char_index -= 1  # move back if we peeked and don't need it
+                return Token(Utils.UNARY, token, self.line_idx)
+        # >, >=
+        elif new_char == ">":
+            token += new_char
+            new_char = self.next_char()
+            if new_char == "=":
+                token += new_char
+                return Token(Utils.COMPARISON, token, self.line_idx)
+            else:
+                self.char_index -= 1  # move back if we peeked and don't need it
+                return Token(Utils.COMPARISON, token, self.line_idx)
+        # <, <=
+        elif new_char == "<":
+            token += new_char
+            new_char = self.next_char()
+            if new_char == "=":
+                token += new_char
+                return Token(Utils.COMPARISON, token, self.line_idx)
+            else:
+                self.char_index -= 1  # move back if we peeked and don't need it
+                return Token(Utils.COMPARISON, token, self.line_idx)
+        # &&
+        elif new_char == "&":
+            token += new_char
+            new_char = self.next_char()
+            if new_char == "&":
+                token += new_char
+                return Token(Utils.ANDOR, token, self.line_idx)
+            else:
+                self.token_error(token)
+        # ||
+        elif new_char == "|":
+            token += new_char
+            new_char = self.next_char()
+            if new_char == "|":
+                token += new_char
+                return Token(Utils.ANDOR, token, self.line_idx)
+            else:
+                self.token_error(token)
         elif new_char == ";":
             token += new_char
             return Token(Utils.SEMICOLON, token, self.line_idx)
@@ -66,7 +128,7 @@ class Scanner:
         elif new_char.isalnum() or new_char == "_":
             is_id = new_char.isalpha()
             is_float = False
-            while new_char.isalnum() or new_char == "." or new_char == "_":
+            while new_char and (new_char.isalnum() or new_char == "." or new_char == "_"):
                 token += new_char
                 if new_char == ".":
                     if is_float or is_id:
@@ -86,8 +148,21 @@ class Scanner:
                 return Token(Utils.FLOAT, token, self.line_idx)
             # alphanumeric underscore combination string
             elif not is_float:
-                # NOTE TO SELF: if need to find stop words in the future like func or return, can just check here
                 # keep scanner simple, can sacrifice a bit of runtime
+                if token == "while":
+                    return Token(Utils.WHILE, token, self.line_idx)
+                elif token == "if":
+                    return Token(Utils.IF, token, self.line_idx)
+                elif token == "else":
+                    return Token(Utils.ELSE, token, self.line_idx)
+                elif token == "continue":
+                    return Token(Utils.CONTINUE, token, self.line_idx)
+                elif token == "break":
+                    return Token(Utils.BREAK, token, self.line_idx)
+                elif token == "return":
+                    return Token(Utils.RETURN, token, self.line_idx)
+                elif token == "func":
+                    return Token(Utils.FUNC, token, self.line_idx)
                 return Token(Utils.ID, token, self.line_idx)
             else:
                 self.token_error(token)  # should never happen
@@ -96,7 +171,7 @@ class Scanner:
             token += new_char
             self.token_error(token)
 
-    def next_char(self) -> str:
+    def next_char(self):
         if not self.curr_line:
             return None  # EOF
         self.char_index += 1
