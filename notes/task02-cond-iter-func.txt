@@ -1,5 +1,5 @@
 Build on task 1
-basic arithmetics, +, - , *, /, %, (, ), exp(), floor()
+basic arithmetics, +, - , *, /, %, (, ), power(), floor()
 end line: ;
 stdout: out(), comma (,)
 comment: //
@@ -86,3 +86,11 @@ tokens:
     OR = 22
     FUNC = 23
     EOF = 24
+
+every single BinOp() operator:
+AND: && done
+OR: || done
+EQUALITY: ==, !=
+COMPARISON: >, <, >=, <=
+ADDOP: +, - done
+MULTOP: *, /, % done

@@ -1,4 +1,17 @@
-from frontend.astnodes.exp import Exp
+import ast
+
+from rang_lang.astnodes.exp import Exp
+
+op_dict = {
+    "+": ast.Add(),
+    "-": ast.Sub(),
+    "*": ast.Mult(),
+    "/": ast.Div(),
+    "%": ast.Mod(),
+    "||": ast.Or(),
+    "&&": ast.And()
+
+}
 
 
 class BinOp:
@@ -11,3 +24,6 @@ class BinOp:
         res = "BinOp(Operator = \n\t\t" + self.operator + \
               ", expression 1 = \n\t\t" + str(self.exp1) + ", expression 2 = \n\t\t" + str(self.exp2) + ")"
         return res
+
+    def to_py_ast(self):
+        return ast.BinOp()

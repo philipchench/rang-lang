@@ -1,6 +1,6 @@
 import sys
-from frontend.token import Token
-from frontend.utils import Utils
+from rang_lang.token import Token
+from rang_lang.utils import Utils
 
 
 class Scanner:

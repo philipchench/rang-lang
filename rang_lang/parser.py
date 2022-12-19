@@ -1,22 +1,22 @@
 import sys
 
-from frontend.astnodes.assign import Assign
-from frontend.astnodes.binop import BinOp
-from frontend.astnodes.conditional import Conditional
-from frontend.astnodes.const import Const
-from frontend.astnodes.exp import Exp
-from frontend.astnodes.function import Function
-from frontend.astnodes.functioncall import FunctionCall
-from frontend.astnodes.iterwhile import IterWhile
-from frontend.astnodes.jumpbreak import JumpBreak
-from frontend.astnodes.jumpcontinue import JumpContinue
-from frontend.astnodes.jumpreturn import JumpReturn
-from frontend.astnodes.program import Program
-from frontend.astnodes.unaryop import UnaryOp
-from frontend.astnodes.var import Var
-from frontend.scanner import Scanner
-from frontend.token import Token
-from frontend.utils import Utils
+from rang_lang.astnodes.assign import Assign
+from rang_lang.astnodes.binop import BinOp
+from rang_lang.astnodes.conditional import Conditional
+from rang_lang.astnodes.const import Const
+from rang_lang.astnodes.exp import Exp
+from rang_lang.astnodes.function import Function
+from rang_lang.astnodes.functioncall import FunctionCall
+from rang_lang.astnodes.iterwhile import IterWhile
+from rang_lang.astnodes.jumpbreak import JumpBreak
+from rang_lang.astnodes.jumpcontinue import JumpContinue
+from rang_lang.astnodes.jumpreturn import JumpReturn
+from rang_lang.astnodes.program import Program
+from rang_lang.astnodes.unaryop import UnaryOp
+from rang_lang.astnodes.var import Var
+from rang_lang.scanner import Scanner
+from rang_lang.token import Token
+from rang_lang.utils import Utils
 
 
 class Parser:
@@ -77,6 +77,10 @@ class Parser:
             return self.parse_conditional()
         elif first.POS == Utils.RETURN:
             self.next_token()
+            # null return
+            if self.curr_token.POS == Utils.SEMICOLON:
+                self.next_token()
+                return JumpReturn(None)
             exp = self.parse_exp()
             if self.curr_token.POS != Utils.SEMICOLON:
                 self.parse_error("Missing semicolon.")
@@ -105,7 +109,7 @@ class Parser:
                     func = self.parse_func(first.lexeme)
                     return func
                 exp = self.parse_exp()
-                expression = Exp(Assign(Var(first.lexeme), exp))
+                expression = Exp(Assign(Var(first.lexeme, "store"), exp))
                 # for now, assignment must end with semicolon
                 if self.curr_token.POS != Utils.SEMICOLON:
                     self.parse_error("Missing semicolon.")
@@ -130,56 +134,56 @@ class Parser:
 
         term = self.parse_and_exp()
         while self.curr_token.POS == Utils.AND:
-            add_op = self.curr_token.lexeme
+            op = self.curr_token.lexeme
             self.next_token()
             term2 = self.parse_and_exp()
-            term = BinOp(add_op, term, term2)
+            term = BinOp(op, term, term2)
         # at this point, term might be an add_exp, not simply a term
         return Exp(term)  # encapsulate within Exp()
 
     def parse_and_exp(self):
         term = self.parse_equality()
         while self.curr_token.POS == Utils.OR:
-            mult_op = self.curr_token.lexeme
+            op = self.curr_token.lexeme
             self.next_token()
             term2 = self.parse_equality()
-            term = BinOp(mult_op, term, term2)
+            term = BinOp(op, term, term2)
         return term
 
     def parse_equality(self):
         term = self.parse_relational()
         while self.curr_token.POS == Utils.EQUALITY:
-            mult_op = self.curr_token.lexeme
+            op = self.curr_token.lexeme
             self.next_token()
             term2 = self.parse_relational()
-            term = BinOp(mult_op, term, term2)
+            term = BinOp(op, term, term2)
         return term
 
     def parse_relational(self):
         term = self.parse_additive()
         while self.curr_token.POS == Utils.COMPARISON:
-            mult_op = self.curr_token.lexeme
+            op = self.curr_token.lexeme
             self.next_token()
             term2 = self.parse_additive()
-            term = BinOp(mult_op, term, term2)
+            term = BinOp(op, term, term2)
         return term
 
     def parse_additive(self):
         term = self.parse_term()
         while self.curr_token.POS == Utils.ADDOP:
-            mult_op = self.curr_token.lexeme
+            op = self.curr_token.lexeme
             self.next_token()
             term2 = self.parse_term()
-            term = BinOp(mult_op, term, term2)
+            term = BinOp(op, term, term2)
         return term
 
     def parse_term(self):
         factor = self.parse_factor()
         while self.curr_token.POS == Utils.MULTOP:
-            mult_op = self.curr_token.lexeme
+            op = self.curr_token.lexeme
             self.next_token()
             factor2 = self.parse_factor()
-            factor = BinOp(mult_op, factor, factor2)
+            factor = BinOp(op, factor, factor2)
         return factor
 
     def parse_factor(self):
@@ -190,11 +194,18 @@ class Parser:
                 self.parse_error("Missing close parenthesis for expression/factor.")
             self.next_token()
             return exp
-        # check if unary (negative sign), NOTE TO SELF: MAKE FUNCTION IF MORE UNARY OPS IN FUTURE
+        # check if unary (negative sign)
         elif self.curr_token.lexeme == "-":
             self.next_token()
             factor = self.parse_factor()
             op = UnaryOp("-", factor)
+            return op
+        # check if unary (based on POS)
+        elif self.curr_token.POS == Utils.UNARY:
+            lexeme = self.curr_token.lexeme
+            self.next_token()
+            factor = self.parse_factor()
+            op = UnaryOp(lexeme, factor)
             return op
         # check number
         elif self.curr_token.POS == Utils.INT or self.curr_token.POS == Utils.FLOAT:
@@ -209,7 +220,7 @@ class Parser:
                 self.next_token()
                 return FunctionCall(name, self.parse_func_args())
             # just regular ol' variable
-            op = Var(name)
+            op = Var(name, "load")
             return op
         else:
             self.parse_error("Bad token for factor.")
@@ -236,8 +247,8 @@ class Parser:
         while self.curr_token.POS != Utils.CLOSE_PAREN:
             if self.curr_token.POS == Utils.EOF:
                 self.parse_error("Missing close parenthesis for function.")
-            exp = self.parse_exp()
-            arguments.append(exp)
+            arguments.append(self.curr_token.lexeme)
+            self.next_token()
             if self.curr_token.POS == Utils.COMMA:
                 self.next_token()
         self.next_token()

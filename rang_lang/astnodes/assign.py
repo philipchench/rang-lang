@@ -1,5 +1,5 @@
-from frontend.astnodes.exp import Exp
-from frontend.astnodes.var import Var
+from rang_lang.astnodes.exp import Exp
+from rang_lang.astnodes.var import Var
 
 
 class Assign:

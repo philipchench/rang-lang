@@ -1,7 +1,7 @@
 import sys
 
-from frontend.parser import Parser
-from frontend.scanner import Scanner
+from rang_lang.parser import Parser
+from rang_lang.scanner import Scanner
 
 
 def main():

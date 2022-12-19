@@ -1,3 +1,6 @@
+import ast
+
+
 class Conditional:
     def __init__(self, exp, if_list, else_list=[]):
         self.exp = exp
@@ -13,3 +16,7 @@ class Conditional:
             for statement in self.else_list:
                 res += "\n\t\t" + str(statement)
         return res + ")"
+
+    def to_py_ast(self):
+        return ast.If(test=self.exp.to_py_ast(), body=[stmt.to_py_ast() for stmt in self.if_list],
+                      orelse=[stmt.to_py_ast() for stmt in self.else_list])

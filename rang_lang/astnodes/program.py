@@ -1,4 +1,4 @@
-from frontend.astnodes.exp import Exp
+from rang_lang.astnodes.exp import Exp
 
 
 class Program:

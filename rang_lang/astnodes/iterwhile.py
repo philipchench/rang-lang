@@ -1,3 +1,6 @@
+import ast
+
+
 class IterWhile:
     def __init__(self, exp, statement_list):
         self.exp = exp
@@ -8,3 +11,6 @@ class IterWhile:
         for statement in self.statement_list:
             res += "\n\t\t" + str(statement)
         return res
+
+    def to_py_ast(self):
+        return ast.While(test=self.exp.to_py_ast(), body=[stmt.to_py_ast for stmt in self.statement_list])
