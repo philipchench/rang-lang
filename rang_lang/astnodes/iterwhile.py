@@ -13,4 +13,7 @@ class IterWhile:
         return res
 
     def to_py_ast(self):
-        return ast.While(test=self.exp.to_py_ast(), body=[stmt.to_py_ast for stmt in self.statement_list])
+        node = ast.While(test=self.exp.to_py_ast(), body=[stmt.to_py_ast() for stmt in self.statement_list], orelse=[])
+        node.lineno = 0
+        node.col_offset = 0
+        return node

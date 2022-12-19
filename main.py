@@ -2,11 +2,13 @@ import sys
 
 from rang_lang.parser import Parser
 from rang_lang.scanner import Scanner
+from rang_lang.transpiler import Transpiler
 
 
 def main():
 
-    s = False
+    p = False
+    py = False
 
     if not len(sys.argv[1:]):
         print("No command line arguments specified.")
@@ -17,8 +19,10 @@ def main():
         if arg == "-h":
             run_help()
             sys.exit()
-        elif arg == "-s":
-            s = True
+        elif arg == "-p":
+            p = True
+        elif arg == "-py":
+            py = True
         path = sys.argv[2]
 
     except:
@@ -34,10 +38,15 @@ def main():
     scanner = Scanner(f)
     parser = Parser(scanner)
 
-    if s:
+    if p:
         parser.parse()
         # parser.debug_scanner()
         parser.print_tree()
+
+    elif py:
+        parser.parse()
+        transpiler = Transpiler(parser.tree)
+        transpiler.compile_to_python()
 
     sys.exit()
 

@@ -6,4 +6,7 @@ class JumpContinue:
         return "Continue()"
 
     def to_py_ast(self):
-        return ast.Continue()
+        node =  ast.Continue()
+        node.lineno = 0
+        node.col_offset = 0
+        return node

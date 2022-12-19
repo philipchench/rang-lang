@@ -1,5 +1,7 @@
 import ast
 
+from rang_lang.utils import Utils
+
 
 class Const:
     def __init__(self, value, num_type):
@@ -10,4 +12,10 @@ class Const:
         return self.value
 
     def to_py_ast(self):
-        return ast.Constant(self.value)
+        if self.num_type == Utils.INT:
+            node =  ast.Constant(int(self.value))
+        else:
+            node = ast.Constant(float(self.value))
+        node.lineno = 0
+        node.col_offset = 0
+        return node

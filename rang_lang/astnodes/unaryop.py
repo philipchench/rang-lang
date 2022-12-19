@@ -20,4 +20,7 @@ class UnaryOp:
         else:
             sys.stderr.write("Bad operator for UnaryOp() node: " + self.operator)
             sys.exit(1)
-        return ast.UnaryOp(op=op, operand=self.exp.to_py_ast())
+        node = ast.UnaryOp(op=op, operand=self.exp.to_py_ast())
+        node.lineno = 0
+        node.col_offset = 0
+        return node

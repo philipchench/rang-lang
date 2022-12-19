@@ -6,4 +6,7 @@ class JumpBreak:
         return "Break()"
 
     def to_py_ast(self):
-        return ast.Break()
+        node = ast.Break()
+        node.lineno = 0
+        node.col_offset = 0
+        return node

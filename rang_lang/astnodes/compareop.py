@@ -3,17 +3,16 @@ import ast
 from rang_lang.astnodes.exp import Exp
 
 op_dict = {
-    "+": ast.Add(),
-    "-": ast.Sub(),
-    "*": ast.Mult(),
-    "/": ast.Div(),
-    "%": ast.Mod(),
-    "||": ast.Or(),
-    "&&": ast.And()
+    "==": ast.Eq(),
+    "!=": ast.NotEq(),
+    ">": ast.Gt(),
+    ">=": ast.GtE(),
+    "<": ast.Lt(),
+    "<=": ast.LtE(),
 }
 
 
-class BinOp:
+class CompareOp:
     def __init__(self, operator: str, exp1: Exp, exp2: Exp):
         self.operator = operator
         self.exp1 = exp1
@@ -25,7 +24,7 @@ class BinOp:
         return res
 
     def to_py_ast(self):
-        node = ast.BinOp(left=self.exp1.to_py_ast(), op=op_dict[self.operator], right=self.exp2.to_py_ast())
+        node = ast.Compare(left=self.exp1.to_py_ast(), ops=[op_dict[self.operator]], comparators=[self.exp2.to_py_ast()])
         node.lineno = 0
         node.col_offset = 0
         return node

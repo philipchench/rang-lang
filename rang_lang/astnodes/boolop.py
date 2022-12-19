@@ -3,17 +3,12 @@ import ast
 from rang_lang.astnodes.exp import Exp
 
 op_dict = {
-    "+": ast.Add(),
-    "-": ast.Sub(),
-    "*": ast.Mult(),
-    "/": ast.Div(),
-    "%": ast.Mod(),
-    "||": ast.Or(),
-    "&&": ast.And()
+    "&&": ast.And(),
+    "||": ast.Or()
 }
 
 
-class BinOp:
+class BoolOp:
     def __init__(self, operator: str, exp1: Exp, exp2: Exp):
         self.operator = operator
         self.exp1 = exp1
@@ -25,7 +20,7 @@ class BinOp:
         return res
 
     def to_py_ast(self):
-        node = ast.BinOp(left=self.exp1.to_py_ast(), op=op_dict[self.operator], right=self.exp2.to_py_ast())
+        node = ast.BoolOp(op=op_dict[self.operator], values=[self.exp1.to_py_ast(), self.exp2.to_py_ast()])
         node.lineno = 0
         node.col_offset = 0
         return node

@@ -21,10 +21,10 @@ class Scanner:
     def next_token(self):
         token = ""
         new_char = self.next_char()
-        if not new_char:
-            return None
         while new_char == " " or new_char == "\t" or new_char == "\n":
             new_char = self.next_char()
+        if not new_char:
+            return None
         if new_char == "{":
             token += new_char
             return Token(Utils.OPEN_BRACKET, token, self.line_idx)

@@ -2,6 +2,8 @@ import sys
 
 from rang_lang.astnodes.assign import Assign
 from rang_lang.astnodes.binop import BinOp
+from rang_lang.astnodes.boolop import BoolOp
+from rang_lang.astnodes.compareop import CompareOp
 from rang_lang.astnodes.conditional import Conditional
 from rang_lang.astnodes.const import Const
 from rang_lang.astnodes.exp import Exp
@@ -109,7 +111,7 @@ class Parser:
                     func = self.parse_func(first.lexeme)
                     return func
                 exp = self.parse_exp()
-                expression = Exp(Assign(Var(first.lexeme, "store"), exp))
+                expression = Assign(Var(first.lexeme, "store"), exp)
                 # for now, assignment must end with semicolon
                 if self.curr_token.POS != Utils.SEMICOLON:
                     self.parse_error("Missing semicolon.")
@@ -121,14 +123,14 @@ class Parser:
 
         # try expression
         self.prev_token()
-        expression = self.parse_exp()
+        expression = self.parse_exp(True)
         # for now, statement must end with semicolon
         if self.curr_token.POS != Utils.SEMICOLON:
             self.parse_error("Missing semicolon.")
         self.next_token()
         return expression
 
-    def parse_exp(self):
+    def parse_exp(self, single_line=False):
         # need to deal with assignment (variable and expression) or just expression
         # for now, parse_exp deals directly with logical-or-exp
 
@@ -137,9 +139,11 @@ class Parser:
             op = self.curr_token.lexeme
             self.next_token()
             term2 = self.parse_and_exp()
-            term = BinOp(op, term, term2)
+            term = BoolOp(op, term, term2)
         # at this point, term might be an add_exp, not simply a term
-        return Exp(term)  # encapsulate within Exp()
+        if single_line:
+            return Exp(term)  # encapsulate within Exp() for expression statements
+        return term
 
     def parse_and_exp(self):
         term = self.parse_equality()
@@ -147,7 +151,7 @@ class Parser:
             op = self.curr_token.lexeme
             self.next_token()
             term2 = self.parse_equality()
-            term = BinOp(op, term, term2)
+            term = BoolOp(op, term, term2)
         return term
 
     def parse_equality(self):
@@ -156,7 +160,7 @@ class Parser:
             op = self.curr_token.lexeme
             self.next_token()
             term2 = self.parse_relational()
-            term = BinOp(op, term, term2)
+            term = CompareOp(op, term, term2)
         return term
 
     def parse_relational(self):
@@ -165,7 +169,7 @@ class Parser:
             op = self.curr_token.lexeme
             self.next_token()
             term2 = self.parse_additive()
-            term = BinOp(op, term, term2)
+            term = CompareOp(op, term, term2)
         return term
 
     def parse_additive(self):

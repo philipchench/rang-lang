@@ -1,13 +1,10 @@
-f = func(x, y) {
-    while (true) {
-        if (!x || y) {
-            meow();
-        } else {
-            break;
-        }
-        floor(x, y);
-        x = x - 1;
-        power(x, y);
+double = func(x) {
+    return x * 2;
+}
+i = 0;
+while(i <= 100){
+    if (i % 2 == 0){
+        out(double(i));
     }
-    return;
+    i = i + 1;
 }

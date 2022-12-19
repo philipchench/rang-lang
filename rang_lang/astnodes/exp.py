@@ -1,3 +1,6 @@
+import ast
+
+
 class Exp:
     def __init__(self, expression):
         self.expression = expression
@@ -6,4 +9,7 @@ class Exp:
         return str(self.expression)
 
     def to_py_ast(self):
-        return self.expression.to_py_ast()
+        node = ast.Expr(self.expression.to_py_ast())
+        node.lineno = 0
+        node.col_offset = 0
+        return node
