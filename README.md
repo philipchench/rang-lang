@@ -28,28 +28,4 @@ out(*args): exactly the same as print() in Python3.
 floor(x): pretty much int(x), but emphasis on the "floor" for the lack of a primitive floor division operator.
 power(x, y): essentially x ** y.
 
-EBNF grammar (hopefully correct):
-<program> ::= { <statement> }
-<statement> ::= <exp> ";"
-                | <assignment-statement>
-                | <conditional-statement>
-                | <iteration-statement>
-                | <jump-statement>
-<assignment-statement> ::= <id> "=" <exp> ";"
-                        | <id> "=" <function> [ ";" ]
-<conditional-statement> ::= "if" "(" <exp> ")" "{" { <statement> } "}" [ "else" "{" { <statement> } "}" ] [ ";" ]
-<iteration-statement> ::= "while" "(" <exp> ")" "{" { <statement> } "}" [ ";" ]
-<jump-statement> ::= "continue"  ";"
-                   | "break"  ";"
-                   | "return" <exp>  ";"
-<exp> ::= <logical-or-exp>
-<logical-or-exp> ::= <logical-and-exp> { "||" <logical-and-exp> }
-<logical-and-exp> ::= <equality-exp> { "&&" <equality-exp> }
-<equality-exp> ::= <relational-exp> { ("!=" | "==") <relational-exp> }
-<relational-exp> ::= <additive-exp> { ("<" | ">" | "<=" | ">=") <additive-exp> }
-<additive-exp> ::= <term> { ("+" | "-") <term> }
-<term> ::= <factor> { ("*" | "/" | "%") <factor> }
-<factor> ::= "(" <exp> ")" | <unary_op> <factor> | <num> | <id> | <function-call>
-<unary_op> ::= "-" | "!"
-<function-call> ::= <id> "(" [ <exp> { "," <exp> } ] ")"
-<function> ::= "func" "(" [ <id> { "," <id> } ] ")" "{" { <statement> } "}"
+EBNF grammar is located in notes/task02-cond-iter-func.txt
