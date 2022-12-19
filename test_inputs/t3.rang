@@ -1,0 +1,46 @@
+// test while and related stuff
+
+// basic while loop, print 0 to 9
+i = 0;
+while (i < 10) {
+    out(i);
+    i = i + 1;
+}
+
+out();
+// while with break (and nested if statement)
+
+i = 0;
+while (i < 10) {
+    if (i == 5){
+        break;
+    }
+    out(i);
+    i = i + 1;
+}
+
+out();
+// while with continue
+
+i = 0;
+while (i < 10) {
+    if (i % 2 == 0){
+        i = i + 1;
+        continue;
+    }
+    out(i);
+    i = i + 1;
+}
+
+out();
+// double while loop
+
+i = 0;
+while (i < 3) {
+    j = 0;
+    while (j < 3){
+        out(i * 10 + j);
+        j = j + 1;
+    }
+    i = i + 1;
+}

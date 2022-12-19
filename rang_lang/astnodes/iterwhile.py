@@ -1,5 +1,7 @@
 import ast
 
+from rang_lang.astnodes.jumppass import JumpPass
+
 
 class IterWhile:
     def __init__(self, exp, statement_list):
@@ -13,7 +15,7 @@ class IterWhile:
         return res
 
     def to_py_ast(self):
+        if not self.statement_list:
+            self.statement_list.append(JumpPass())
         node = ast.While(test=self.exp.to_py_ast(), body=[stmt.to_py_ast() for stmt in self.statement_list], orelse=[])
-        node.lineno = 0
-        node.col_offset = 0
         return node

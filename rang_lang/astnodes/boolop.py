@@ -21,6 +21,4 @@ class BoolOp:
 
     def to_py_ast(self):
         node = ast.BoolOp(op=op_dict[self.operator], values=[self.exp1.to_py_ast(), self.exp2.to_py_ast()])
-        node.lineno = 0
-        node.col_offset = 0
         return node

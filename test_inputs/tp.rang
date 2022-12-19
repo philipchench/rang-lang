@@ -1,10 +1,4 @@
-double = func(x) {
-    return x * 2;
+f1 = func(x){
+    return 4 * power(x, 2) + 2 * x + 1;
 }
-i = 0;
-while(i <= 100){
-    if (i % 2 == 0){
-        out(double(i));
-    }
-    i = i + 1;
-}
+out(f1(5));

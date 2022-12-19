@@ -1,5 +1,7 @@
 import ast
 
+from rang_lang.astnodes.jumppass import JumpPass
+
 
 class Function:
     def __init__(self, name, args: str, statement_list):
@@ -20,14 +22,10 @@ class Function:
         args_processed = []
         for arg in self.args:
             ast_arg = ast.arg(arg=arg)
-            ast_arg.lineno = 0
-            ast_arg.col_offset = 0
             args_processed.append(ast_arg)
         arguments = ast.arguments(posonlyargs=[], args=args_processed, kwonlyargs=[], kw_defaults=[], defaults=[])
-        arguments.lineno = 0
-        arguments.col_offset = 0
+        if not self.statement_list:
+            self.statement_list.append(JumpPass())
         node = ast.FunctionDef(name=self.name, args=arguments,
                                body=[stmt.to_py_ast() for stmt in self.statement_list], decorator_list=[])
-        node.lineno = 0
-        node.col_offset = 0
         return node

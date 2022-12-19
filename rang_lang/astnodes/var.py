@@ -18,7 +18,13 @@ class Var:
         else:
             sys.stderr.write("bad mode for Var() node: " + self.name)
             sys.exit(1)
-        node = ast.Name(id=self.name, ctx=ctx)
-        node.lineno = 0
-        node.col_offset = 0
+        # handle built-in "variables"
+        # true
+        if self.name == "true":
+            node = ast.Constant(value=True)
+        # false
+        elif self.name == "false":
+            node = ast.Constant(value=False)
+        else:
+            node = ast.Name(id=self.name, ctx=ctx)
         return node

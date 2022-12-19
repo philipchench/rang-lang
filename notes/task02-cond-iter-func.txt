@@ -54,7 +54,9 @@ statement = Exp(exp), Assign(Var, exp),
 
 Function(string, var_list, statement_list)
 exp = Var(string)
-    | BinOp(bin_op, exp, exp)
+    | BinOp(op, exp, exp)
+    | CompareOp(op, exp, exp)
+    | BoolOp(op, exp, exp)
     | UnaryOp(unary_op, exp)
     | Const(num_type, number)
     | FunctionCall(string, exp_list)
@@ -87,7 +89,7 @@ tokens:
     FUNC = 23
     EOF = 24
 
-every single BinOp() operator:
+every single "BinOp" operator:
 AND: && done
 OR: || done
 EQUALITY: ==, !=

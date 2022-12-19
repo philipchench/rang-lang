@@ -1,10 +1,10 @@
 import ast
 
 
-class JumpBreak:
+class JumpPass:
     def __str__(self):
-        return "Break()"
+        return "Continue()"
 
     def to_py_ast(self):
-        node = ast.Break()
+        node = ast.Pass()
         return node

@@ -1,0 +1,5 @@
+// errors, either blocked by parser or python
+
+3 = 4; // parser, assign to non-variable
+x = y; // python, y not defined
+x = x ++ 1; // bad token

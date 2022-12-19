@@ -16,6 +16,4 @@ class Const:
             node =  ast.Constant(int(self.value))
         else:
             node = ast.Constant(float(self.value))
-        node.lineno = 0
-        node.col_offset = 0
         return node

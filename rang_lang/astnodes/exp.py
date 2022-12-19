@@ -10,6 +10,4 @@ class Exp:
 
     def to_py_ast(self):
         node = ast.Expr(self.expression.to_py_ast())
-        node.lineno = 0
-        node.col_offset = 0
         return node

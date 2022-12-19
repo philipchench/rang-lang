@@ -15,6 +15,4 @@ class Assign:
 
     def to_py_ast(self):
         node = ast.Assign(targets=[self.var.to_py_ast()], value=self.exp.to_py_ast())
-        node.lineno = 0
-        node.col_offset = 0
         return node

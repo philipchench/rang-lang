@@ -7,10 +7,10 @@ class Transpiler:
     def __init__(self, tree: Program):
         self.tree = tree
 
-    def compile_to_python(self):
+    def build_py_ast(self):
         body = []
         for stmt in self.tree.get_statements():
             body.append(stmt.to_py_ast())
         tree = ast.Module(body=body, type_ignores=[])
-        # print(ast.dump(tree))
-        exec(compile(tree, filename="<ast>", mode="exec"))
+        ast.fix_missing_locations(tree)
+        return tree

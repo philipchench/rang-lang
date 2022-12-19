@@ -1,4 +1,44 @@
-x = -3;
-y = 2;
-z = (x + y) * x - power(y, (x % 10));
-out(z); // 7
+// test conditional, boolean, related stuff
+
+x = 1;
+if(x > 0){} // nothing should happen
+
+if(x > 0){// just a comment
+} // nothing should happen
+
+if(x > 0){
+// just a comment
+} // nothing should happen
+
+if(x > 0){out(x);} // should print 1
+if(x < 0){} else{} // nothing should happen
+if(x < 0){} else{out(x);} // should print 1
+
+if (x > 1) {
+// just a comment
+} else {
+    if (x > 0) {
+        out(x); // simulating an if, else if, else
+    } else {
+    // nothing
+    }
+}
+
+out(true); // true
+out(false); // false
+x = true;
+out(x); // can assign boolean to variable
+x = 3 > 1;
+out(x); // can interpret value type as boolean
+out(3 < 1); // test <
+out(3 >= 3); // test >=
+out(4 <= 5); // test <=
+out(3 == 3); // test ==
+out(3 != 3); // test !=
+out(!x); // test !
+out(!true); // test weird expression that should work
+out(3 < 4 || false); // test or, output true
+out(4 < 3 || 5 < 3); // test or, output false
+out((3 < 4) && false); // test and, output false
+out(true && true); // test and, output true
+out(5 < 3 || (4 > 3 && true)); // test precedence

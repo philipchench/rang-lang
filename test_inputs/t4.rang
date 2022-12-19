@@ -1,0 +1,62 @@
+// function definition and related
+
+// has return value
+f1 = func(x){
+    return x + 1;
+}
+
+out(f1(3)); // expect 4
+
+f2 = func(){} // nothing
+
+f2(); // nothing
+
+// no return statement, multiple args
+f3 = func(x, y){
+    out(x * y);
+}
+
+f3(3, 5);
+
+// return statement, but no return value
+f4 = func(x){
+    out(x);
+    return;
+}
+
+f4(100);
+
+// fib non-recursive
+fib = func(x){
+    if (x == 0) {return 0;}
+    if (x == 1) {return 1;}
+    counter = 2;
+    i = 1;
+    j = 1;
+    while (counter < x) {
+        k = i;
+        i = i + j;
+        j = k;
+        counter = counter + 1;
+    }
+    return i;
+}
+
+x = 0;
+while(x < 11){
+    out(fib(x));
+    x = x + 1;
+}
+
+//fib recursive
+fib2 = func(x){
+    if (x == 0) {return 0;}
+    if (x == 1) {return 1;}
+    return fib2(x - 1) + fib2(x - 2);
+}
+
+x = 0;
+while(x < 11){
+    out(fib2(x));
+    x = x + 1;
+}

@@ -1,2 +1,19 @@
-x = 69;
-out(x);
+// basic assignments, built-in function calls, stdout
+num1 = 69; // basic
+num2 = -3; // neg
+num3 = 3 + 4; // add
+num4 = 4 - 1; // sub
+num5 = 3 * 3; // mult
+num6 = 6 / 3; // div
+num7 = 4 / 3; // with remainder
+num8 = 3.14; // float
+num9 = 6 % 5; // mod
+num10 = floor(num6); // test floor and pass reference
+num11 = power(3, 3); // test power function
+num12 = num1; // test variable
+num13 = (3 + num9); // test single paren
+num14 = 3 + 4 * 9; // test precedence
+num15 = 3 - 4 * 5 % 3; // another one
+num16 = (3 + 4) * 9; // test paren
+out(num1, num2, num3, num4, num5, num6, num7, num8, num9, num10);
+out(num11, num12, num13, num14, num15, num16);
