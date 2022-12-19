@@ -17,7 +17,7 @@ which then gets compiled and executed (in Python of course). The scanner simply 
 After scanning, the recursive-descent parser builds the syntax tree, which is represented by AST nodes 
 starting with Program() as the root. The transpiler can then build a Python module AST from the Program()'s 
 list of statements, and finally, the code is executed. The parser picks up basic syntax errors, while 
-Python gets whatever is left, as Rang is technically an interpreted language.
+Python picks up whatever is left, as Rang is technically an interpreted language.
 
 ## about Rang
 Rang is inspired by C syntax and can look quite similar to Javascript. A few things to note: module has the 
