@@ -1,3 +1,4 @@
+import ast
 import sys
 
 from rang_lang.parser import Parser
@@ -50,7 +51,9 @@ parser = Parser(scanner)
 if p:
     parser.parse()
     # parser.debug_scanner()
-    parser.print_tree()
+    transpiler = Transpiler(parser.tree)
+    tree = transpiler.build_py_ast()
+    print(ast.dump(tree, indent=4))
 
 elif py:
     parser.parse()
